@@ -510,3 +510,11 @@ public static void setVelocidadeLimite(double velocidadeLimite) {
 
 Carro.setVelocidadeLimite(180);//Ai para alteramos o valor desse atributo precisamos chamalo pela classe
 ```
+- **Mapeamento de relacionamentos**
+    1. Unidirecional de um para um
+    2. Bidirecional de um para um
+    3. Unidirecional de um para muitos
+    4. Bidirecional de um para muitos
+    5. Unidirecional de muitos para um
+    6. Unidirecional de muitos para muitos
+    7. Bidirecional de muitos para muitos
