@@ -1,16 +1,47 @@
 ## Java Fundamentos
 
+O Java, como **plataforma de programação**, nasceu no ano de 1995 dentro dos laboratórios da empresa Sun Microsystem como resultado de uma extensa pesquisa científica e tecnológica. A plataforma Java entrega um **ambiente completo** para o **[desenvolvimento e execução de programas](https://www.alura.com.br/artigos/async-await-no-javascript-o-que-e-e-quando-usar)**, sendo composta por:
+
+- Uma **linguagem de programação de alto nível orientada a objetos**;
+- Máquina Virtual (*Java Virtual Machine* ou JVM), que garante **independência de plataforma**, pois o código executa na máquina virtual e essa pode ser portada para outras plataformas como Windows ou Linux;
+- *Java Runtime Environment* ou **JRE**, que agrega a máquina virtual e alguns recursos para a execução de aplicações Java; e
+- *Java Development Kit* ou **JDK**, que é um conjunto de utilitários que oferece suporte ao desenvolvimento de aplicações.
+
+No Java, os programas são escritos em um arquivo com a extensão `.java`, que em um processo posterior serão compilados para arquivos com a extensão `.class`. Esses, por sua vez, contêm os códigos a serem executados na máquina virtual, os `bytecodes`.
+
+## **Tecnologia Java**
+
+A plataforma Java é estruturada em um portfólio de produtos para desenvolvimento e execução de aplicações, idealizando que um mesmo **programa** possa **funcionar em diferentes sistemas operacionais e dispositivos**. Atualmente a plataforma está dividida em duas grandes áreas:
+
+- *Java Standard Edition* ou `JavaSE`
+- *Java Enterprise Edition* ou `JavaEE`
+
+### **Java Standard Edition ou JavaSE**
+
+Componente padrão do Java que fornece um **ambiente** para o **desenvolvimento de aplicações** de **pequeno e médio porte**, além de um conjunto de APIs base da plataforma e a JVM padrão.
+
+### **Java Enterprise Edition ou JavaEE**
+
+Componente baseado no `JavaSE`, é **focado** no **desenvolvimento de aplicações empresariais multicamadas** de **grande porte** e provê serviços adicionais, ferramentas e APIs para simplificar a criação de aplicações complexas.
+
+> 
+> 
+
 - Bibliotecas
     
     Java.lang → é um pacote basico do java que ja vem por padrão
     
     java.util.Scanner → para podermos pegar dados de entrada 
     
-    ### Introdução ao Swing
+    A classe Scanner do Java é utilizada para ler dados de entrada em um programa Java. Esses dados podem ser lidos a partir de várias fontes de entrada, como arquivos, fluxos de entrada, Strings e até mesmo a entrada do usuário através do teclado, como vimos em aula.
     
-    Biblioteca Swing é uma lib visual, para criar interfaces graficas desktop. 
+    Ela oferece uma série de métodos para ler dados de diferentes tipos, como inteiros, números de ponto flutuante, strings e caracteres.
     
-    import javax.swing;
+    Para utilizar a classe Scanner, primeiro é necessário importá-la no início do seu programa. Provavelmente ao incluir a mesma no código, a IDE já vai sugerir o import. Esse import ficará como descrito abaixo:
+    
+    ```java
+    import java.util.Scanner;
+    ```
     
     ### Java FX
     
@@ -518,3 +549,54 @@ Carro.setVelocidadeLimite(180);//Ai para alteramos o valor desse atributo precis
     5. Unidirecional de muitos para um
     6. Unidirecional de muitos para muitos
     7. Bidirecional de muitos para muitos
+    
+- **Comparação de Strings**
+    
+    Em Java, é possível comparar duas Strings utilizando o operador ==. Porém, esse operador verifica apenas se as duas variáveis apontam para o mesmo objeto na memória, e não se o conteúdo das Strings é igual. Para comparar o conteúdo de duas Strings, é necessário utilizar o método equals(). Por exemplo:
+    
+    ```csharp
+    String senha = "12345";
+    if (senha.equals("12345")) {
+        System.out.println("Acesso autorizado!");
+    }else {
+        System.out.println("Senha incorreta.");
+    }COPIAR CÓDIGO
+    ```
+    
+    Nesse caso, o método `equals()` é utilizado para comparar o conteúdo da variável senha com a String "12345". Se as duas Strings forem iguais, a mensagem "Acesso autorizado!" será impressa, caso contrário, a mensagem "Senha incorreta." será impressa.
+    
+    Mais adiante trabalharemos também com o método `equalsIgnoreCase()`, que é usado para que a comparação de Strings desconsidere as letras maiúsculas e minúsculas. Utilizando apenas o equals, as String “alura” e “Alura” seriam consideradas diferentes.
+    
+- **Formatação de textos → format()**
+    
+    Uma das maneiras mais comuns de se formatar textos em Java é utilizando o método `format()`, da classe String. Esse método permite formatar um texto utilizando diversos placeholders, que são representados pelo caractere `%` seguido de uma letra que indica o tipo de dado que será inserido no placeholder. Por exemplo, `%s` indica que uma String será inserida no placeholder, `%d` indica um valor inteiro e `%f` indica um valor de ponto flutuante. Vamos ver um exemplo:
+    
+    ```csharp
+    String nome = "Maria";
+    int idade = 30;
+    double valor = 55.9999;
+    System.out.println(String.format("Meu nome é %s, eu tenho %d anos e hoje gastei %.2f reais", nome, idade, valor));
+    COPIAR CÓDIGO
+    ```
+    
+    Nesse exemplo, os valores das variáveis nome, idade e valor são passados como parâmetros para o método `String.format`, substituindo os placeholders `%s`, `%d` e `%.2f`, respectivamente. O resultado impresso será "Meu nome é Maria, eu tenho 30 anos e hoje gastei 55,99 reais". Perceba também que o placeholder `%.2f` indica que o valor deve ser formatado com duas casas decimais.
+    
+- **Casting**
+    
+    **Casting implícito**
+    
+    O casting implícito é realizado automaticamente pelo compilador quando o tipo de dado de origem é compatível com o tipo de dado de destino. Por exemplo, é possível atribuir um valor de tipo int a uma variável do tipo double, pois o tipo double é maior e suporta todos os valores que o tipo int pode armazenar:
+    
+    ```cpp
+    int x = 10;
+    double y = x; // casting implícito
+    ```
+    
+    **Casting explícito**
+    
+    O casting explícito é realizado quando o tipo de dado de origem é incompatível com o tipo de dado de destino. Nesse caso, devemos utilizar o operador de casting para realizar a conversão:
+    
+    ```cpp
+    double x = 10.5;
+    int y = (int) x; // casting explícito
+    ```
