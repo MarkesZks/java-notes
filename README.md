@@ -600,3 +600,51 @@ Carro.setVelocidadeLimite(180);//Ai para alteramos o valor desse atributo precis
     double x = 10.5;
     int y = (int) x; // casting explícito
     ```
+- **Protected**
+
+Permite que os atributos de uma classe sejam acessados por outras classes do mesmo pacote e também por suas subclasses, independentemente do pacote em que se encontram.
+
+O modificador protected é útil em situações em que uma classe precisa permitir que suas subclasses acessem diretamente seus atributos, sem a necessidade de restringir o acesso apenas pelos métodos getters e setters.
+
+```java
+public class Conta {
+
+private String titular;
+protected double saldo;
+
+public void sacar(double valor) {
+    //implementacao do metodo omitida
+  }
+
+public void depositar(double valor) {
+    //implementacao do metodo omitida
+  }
+
+  //getters e setters
+}
+```
+
+```java
+public class ContaPoupanca extends Conta {
+
+private double taxaDeJuros;
+
+public void calcularJuros() {
+    double juros =this.saldo * taxaDeJuros;
+    System.out.println("Juros atual: " +juros);
+  }
+
+  //getters e setters
+}
+```
+
+Repare que agora o atributo `saldo` foi acessado diretamente pela classe `ContaPoupanca`.
+
+### Annotations(Anotação Java)
+
+As anotações, também conhecidas como annotations, são uma forma de adicionar configurações ao código Java de uma maneira bem simples. Elas são usadas para fornecer informações adicionais sobre o código, como o significado de uma classe, um método ou um atributo.
+
+No Java, as anotações são definidas com o uso do símbolo "@" seguido do nome da anotação. Por exemplo, a anotação `@Deprecated` é usada para indicar que um método ou classe está obsoleto e não deve ser mais utilizado. Outra anotação muito útil é a `@Override`, conforme foi demonstrado no último vídeo, que indica que um método está sobrescrevendo o mesmo método definido na sua classe mãe.
+
+- `@Override` → é utilizada em Java para indicar que um método está sendo sobrescrito na classe filha. Embora seja opcional, é uma boa prática utilizá-la, pois ela ajuda a evitar erros de digitação e a IDE pode exibir alertas caso haja algum problema na sobrescrita do método.
+- `@Deprecated` → é usada para indicar que um método ou classe está obsoleto e não deve ser mais utilizado
