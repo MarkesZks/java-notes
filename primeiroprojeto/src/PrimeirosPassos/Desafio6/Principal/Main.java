@@ -1,5 +1,6 @@
 package PrimeirosPassos.Desafio6.Principal;
 
+import PrimeirosPassos.Desafio6.Modelos.MinhasPreferidas;
 import PrimeirosPassos.Desafio6.Modelos.Musicas;
 import PrimeirosPassos.Desafio6.Modelos.Podcast;
 
@@ -27,6 +28,9 @@ public class Main {
         for (int i = 0; i <1000 ; i++) {
             meuPodcast.curtir();
         }
+        MinhasPreferidas preferidas = new MinhasPreferidas();
+        preferidas.inclui(meuPodcast);
+        preferidas.inclui(minhaMusica);
 
     }
 }

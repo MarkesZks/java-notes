@@ -639,6 +639,208 @@ public void calcularJuros() {
 ```
 
 Repare que agora o atributo `saldo` foi acessado diretamente pela classe `ContaPoupanca`.
+- **Interface**
+
+interfaces são uma forma de definir um **contrato** que as classes devem seguir, sendo que ele define quais métodos devem ser implementados pelas classes que o implementarem. Interfaces permitem que diferentes classes possam ser tratadas de maneira padronizada, via polimorfismo, tornando assim o código fácil de estender com novos comportamentos.
+
+No Java, uma interface é definida usando a palavra-chave **interface**. Por exemplo:
+
+```java
+public interface Tributavel {
+
+    double getValorImposto();
+
+}
+```
+
+No exemplo de código anterior, estamos definindo uma interface chamada **Tributavel**, sendo que ela possui apenas um método chamado `getValorImposto()` que retorna um valor do tipo `double`. Essa interface pode ser implementada por qualquer classe que queira ser tributável no projeto.
+
+Para implementar uma interface, usamos a palavra-chave **implements** após a definição da classe. A classe que implementa a interface deve implementar **todos** os métodos definidos na interface. Por exemplo:
+
+```java
+public class Produto implements Tributavel {
+
+private String nome;
+private double valor;
+
+    @Override
+public double getValorImposto() {
+return this.valor * 0.1;
+    }
+
+    //getters e setters
+}
+```
+
+## **Utilização de interfaces**
+
+Interfaces podem ser utilizadas para definir comportamentos que podem ser aplicados a várias classes diferentes, tornando assim o código mais modular e fácil de manter.
+
+Por exemplo, suponha que temos um sistema de vendas que precisa calcular o imposto de diferentes tipos de produtos. Podemos criar a interface `Tributavel`, para definir o comportamento de calcular imposto, e criar várias classes diferentes que implementam essa interface para calcular o imposto de diferentes produtos. Por exemplo:
+
+```csharp
+public class CalculadoraImposto {
+
+private double totalImposto = 0;
+
+public void calcularImposto(Tributavel item) {
+this.totalImposto += item.getValorImposto();
+    }
+
+public double getTotalImposto() {
+return this.totalImposto;
+    }
+
+}
+```
+
+Nesse exemplo, estamos criando uma classe chamada **CalculadoraImposto**, que tem um atributo privado chamado `totalImposto`, que armazena o valor total dos impostos.
+
+Repare que o método `calcularImposto` recebe um parâmetro do tipo `Tributavel`. Ao declarar uma variável com o tipo de uma interface, como é feito nesse método, podemos atribuir a essa variável qualquer objeto que implemente essa interface, ou seja, tanto um objeto do tipo `Servico` quanto `Produto`. Para ambos os casos, a `CalculadoraImposto` irá chamar o método implementado na classe específica. Ou seja, para um produto, irá chamar o método *getTotalImposto* implementado na classe **Produto**. E para um serviço, irá chamar o método *getTotalImposto* implementado na classe **Servico**.
+
+Isso é muito útil quando queremos tratar vários objetos de classes diferentes de forma semelhante, permitindo que diferentes classes possam ser tratadas de maneira padronizada, facilitando a manutenção e extensão do código. Esse é mais um exemplo de aplicação do polimorfismo em Java, mas agora com a utilização de interfaces.
+
+### Array List
+
+**Arrays** são estruturas de dados que permitem armazenar uma coleção de elementos do mesmo tipo. Eles são muito utilizados para manipulação de dados em projetos de programação.
+
+Para declarar um array em Java, é preciso definir seu tipo e tamanho. Por exemplo, para criar um array de inteiros com tamanho 5, podemos escrever o seguinte código:
+
+**`int**[] numeros = **new** **int**[5];`
+
+Aqui, estamos declarando um array chamado "**numeros**" do tipo "**int**" e com tamanho 5. É importante lembrar que o índice dos elementos de um array começa em 0 e vai até o tamanho do array menos 1.
+
+Após declarar um array, podemos inicializá-lo com valores. Por exemplo, podemos preencher o array "numeros" com os números de 1 a 5 da seguinte forma:
+
+```cpp
+for (int i = 0; i < numeros.length; i++) {
+    numeros[i] = i + 1;
+}
+```
+
+Aqui, estamos percorrendo o array "numeros" utilizando um loop for e preenchendo cada posição com seu respectivo índice mais 1.
+
+Também é possível criar arrays de objetos e não apenas de tipos primitivos. Por exemplo:
+
+```java
+Filme[] filmes =newFilme[2];
+
+Filme filme1 =newFilme("Avatar", 2009);
+Filme filme2 =newFilme("Dogville", 2003);
+
+filmes[0] = filme1;
+filmes[1] = filme2;
+```
+
+Embora os arrays sejam úteis, eles possuem algumas limitações que podem causar problemas em projetos. Alguns desses problemas incluem:
+
+1. Tamanho fixo: o tamanho de um array é fixo e não pode ser alterado após a sua criação. Isso pode ser problemático em situações em que o tamanho dos dados a serem armazenados é desconhecido ou variável.
+2. Ausência de métodos: arrays não possuem métodos que permitam a inserção, remoção ou pesquisa de elementos de forma eficiente. Isso pode levar a soluções de código complicadas e ineficientes para tarefas simples.
+
+Justamente por conta desses problemas e dificuldades é que não devemos utilizar arrays para representar uma coleção de elementos, mas sim alguma classe do Java, como a ArrayList, que encapsula e abstrai um array, facilitando a sua utilização via métodos e deixando o código do projeto mais simples de entender e evoluir.
+
+**Criando um Array:**
+
+```java
+ ArrayList<Filme> listaDeFilmes = new ArrayList<>();
+```
+
+<aside>
+💡 Não existe heraça de construtores;
+
+</aside>
+
+Podemos criar um contrutor que precisa ser herdado da seguinte forma:
+
+ 
+
+```java
+    public Serie(String nome, int anoDeLancamento) {
+        super(nome, anoDeLancamento);
+    }
+```
+
+### **Outra formas de percorrer a Lista**
+
+A forma mais comum de percorrer uma lista no Java é utilizando o laço foreach tradicional, também conhecido como for-each. Esse laço permite que se percorra todos os elementos de uma lista, sem a necessidade de se preocupar com índices ou o tamanho dela, tornando o código mais simples e legível. Por exemplo, suponha que tenhamos uma lista de nomes de pessoas e que desejamos imprimi-los na tela:
+
+```java
+ArrayList<String> nomes = new ArrayList<>();
+nomes.add("Jacqueline");
+nomes.add("Paulo");
+nomes.add("Suellen");
+nomes.add("Emily");
+
+for (String nome : nomes) {
+    System.out.println(nome);
+}
+```
+
+Esse loop for percorre todos os elementos da lista, atribuindo cada um deles à variável `nome`, que é usada para imprimir o valor na tela. Esse tipo de loop é muito útil em situações onde não precisamos realizar nenhuma operação complexa sobre os elementos da lista.
+
+No entanto, a partir do Java 8, foi adicionado na interface `List`, a qual a classe `ArrayList` implementa, um novo método chamado **forEach**, que possibilita a iteração sobre os elementos da lista de forma mais concisa e elegante. Por exemplo, o exemplo anterior pode ser reescrito utilizando o método forEach da seguinte forma:
+
+```java
+nomes.forEach(nome -> System.out.println(nome));
+```
+
+Nesse caso, o método forEach é chamado sobre a lista nomes e recebe como parâmetro uma expressão lambda que realiza a impressão do valor na tela. A expressão lambda `nome -> System.out.println(nome)` é uma forma compacta de definir uma função que recebe um parâmetro nome e realiza a operação de impressão.
+
+É possível simplificar ainda mais o exemplo de código anterior, utilizando o recurso conhecido como **Method Reference**, que nada mais é do que uma forma reduzida de uma expressão lambda:
+
+```java
+nomes.forEach(System.out::println);
+```
+
+No código anterior, o símbolo **::** é a sintaxe do Method Reference, que no exemplo mostrado faz uma referência para o método `println`.
+
+**instanceof 
+V**erificar se um objeto é uma instância de uma determinada classe. Ele retorna um valor booleano, ou seja, verdadeiro ou falso, indicando se o objeto é uma instância da classe especificada. Por exemplo, se tivermos um objeto chamado `item` e quisermos verificar se ele é uma instância da classe `Filme`, podemos usar o comando `if (item instanceof Filme)`. Isso nos permite realizar ações específicas com base no tipo do objeto, como no exemplo em que verificamos se o item é um filme para então mostrar a classificação do filme. 
+
+```java
+ if (item instanceof Filme filme){
+                /*Instanceof verifica o tipo do objeto*/
+                System.out.println(filme.getClassificacao());
+            }
+```
+
+### **Variáveis e referências**
+
+Referências são **ponteiros** para objetos em memória, ou seja, elas apontam para um objeto e permitem que você trabalhe com ele. No Java, toda variável de objeto é na verdade uma referência a esse objeto que foi alocado na memória.
+
+Quando você instancia um objeto, está, na realidade, criando um novo bloco de memória que armazena as informações desse objeto. A maneira de chegar a esse bloco de memória, para armazenar e ler informações dele, ocorre por meio de uma referência, que é representada por uma variável. Por exemplo:
+
+```java
+Filme filme1 =new Filme("Avatar", 2009);
+```
+
+No exemplo de código anterior, criamos um novo objeto da classe `Filme` e armazenamos uma referência a ele na variável `filme1`.
+
+É importante lembrar que as referências a objetos em Java não são o próprio objeto em si, pois elas apenas apontam para o objeto. Quando você passa uma referência a um método ou atribui uma referência a outra variável, está apenas copiando o valor da referência e não do objeto em si. Por exemplo:
+
+```java
+Filme filme1 =new Filme("Avatar", 2009);
+Filme filme2 =new Filme("The Matrix", 1999);
+Filme filme3 = filme1;
+```
+
+No exemplo de código anterior, foram criados apenas dois objetos em memória. A variável `filme3` é apenas uma referência que aponta para o mesmo objeto sendo referenciado pela variável `filme1`.
+
+Uma questão importante relacionada com referências a objetos em Java é a questão da igualdade e identidade de objetos. Quando você compara duas referências de objeto usando o operador de igualdade **==**, está comparando as referências em si, não os objetos que elas apontam. Por exemplo:
+
+```csharp
+Filme filme1 =new Filme("Avatar", 2009);
+Filme filme2 =new Filme("Avatar", 2009);
+
+if (filme1 == filme2) {
+    System.out.println("Iguais");
+}else {
+    System.out.println("Diferentes");
+}
+```
+
+No exemplo de código anterior, a saída no console será: "Diferentes". Embora os dois objetos tenham as mesmas informações na memória, a comparação com **==** verifica se as referências são iguais, ou seja, se apontam para o mesmo objeto na memória.
+
 
 ### Annotations(Anotação Java)
 
