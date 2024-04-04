@@ -841,6 +841,224 @@ if (filme1 == filme2) {
 
 No exemplo de código anterior, a saída no console será: "Diferentes". Embora os dois objetos tenham as mesmas informações na memória, a comparação com **==** verifica se as referências são iguais, ou seja, se apontam para o mesmo objeto na memória.
 
+### Ordernar uma lista
+
+- **Para ordernamos um lista de tipos iguais em ordem alfabetica/numerica utilizamos o seguinte codigo:**
+
+```java
+Collections.sort(buscaPorArtistas);
+//buscaPorArtistas Seria no caso o nosso array
+```
+
+Porem para fazermos isso com Classes de tipos de objetos que não existem por padrão por exemplos “Titulo” temos que adicionar uma interface padrão do java dentro da nossa classe.
+
+`Comparable`, que define um contrato de comparação entre objetos do mesmo tipo.
+
+```java
+public class Titulo implements Comparable<Titulo>{
+```
+
+Quando uma classe implementa a interface `Comparable`, ela deve sobrescrever o método `compareTo()`. Esse método é responsável por definir a lógica de comparação entre duas instâncias da classe. Por exemplo, se tivéssemos uma classe `Livro` e quiséssemos comparar os livros com base no título, implementaríamos a interface `Comparable` e sobrescreveríamos o método `compareTo()` para comparar os títulos dos livros.
+
+```java
+    @Override
+    public int compareTo(Titulo outroTitulo) {
+        return this.getNome().compareTo(outroTitulo.getNome());
+    }
+```
+
+Além da interface `Comparable`, o Java possui uma outra interface chamada `Comparator`, que nos fornece outra alternativa para ordenação de coleções.
+
+Você pode entender melhor a diferença entre elas, com exemplos em códigos, lendo o [artigo Ordenando coleções com Comparable e Comparator](https://www.alura.com.br/artigos/ordenando-colecoes-com-comparable-e-comparator?_gl=1*7ljbto*_ga*Mzc3NTIxMDAuMTcwNjcyNDQ1Mw..*_ga_1EPWSW3PCS*MTcxMTA3NTg0My44MS4xLjE3MTEwNzYzMzYuMC4wLjA.*_fplc*TG9MNmpxUVlPR0wydCUyRmVBeFNTOFJvcEZlNkU5SUNNJTJCYXlOZ2N4WkZGcElOTjJzVjlVNlBvZ2VCY3BnTzh5UVA1ZUFiZ3R4U04zZGNDUndOYnVjcUJ1d0tTJTJCaVd4U2tKOXJLcXFERUdLJTJGMG9FUW1jNzl5cXJrc2ZuWndDVnclM0QlM0Q.).
+
+   
+
+- **Diferença entre `Comparable` e o `Comparator`**
+
+O `Comparable` e o `Comparator` são duas interfaces em Java que permitem a comparação e a ordenação de objetos, mas de maneiras diferentes.
+
+A interface `Comparable` é usada para definir a lógica de comparação dentro da própria classe do objeto. Quando uma classe implementa a interface `Comparable`, ela fornece uma maneira de comparar instâncias da mesma classe. Isso significa que a lógica de comparação é embutida na própria classe do objeto.
+
+Por outro lado, a interface `Comparator` é usada para definir um critério de comparação separado da classe principal. Isso é útil quando você deseja fornecer diferentes maneiras de ordenar objetos ou quando não pode modificar a classe do objeto para implementar `Comparable`. Com o `Comparator`, você pode definir várias lógicas de comparação sem modificar a classe do objeto.
+
+Em resumo, o `Comparable` é usado para definir a lógica de comparação dentro da classe do objeto, enquanto o `Comparator` é usado para definir critérios de comparação externos à classe do objeto. Ambos são úteis em diferentes situações, e a escolha entre eles depende do contexto e dos requisitos do sistema.
+
+```java
+lista.sort(Comparator.comparing(Titulo::getAnoDeLancamento));
+
+System.out.println("Ordem por ano "+lista);
+```
+
+## Tipos de listas
+
+## **ArrayList**
+
+A principal característica do ArrayList é que ele é baseado em um array dinâmico. Ele armazena os elementos em uma matriz interna e, conforme novos elementos são adicionados, o tamanho da matriz é automaticamente ajustado para acomodar o novo elemento. Da mesma forma, quando um elemento é removido, o tamanho do array é ajustado para evitar o desperdício de espaço. O ArrayList é amplamente utilizado devido à sua facilidade de uso e eficiência em termos de desempenho.
+
+## **LinkedList**
+
+A classe LinkedList fornece uma lista encadeada de elementos. Diferentemente do ArrayList, que é baseado em um array, o LinkedList é baseado em uma lista encadeada, o que significa que cada elemento da lista é um objeto que contém uma referência para o próximo elemento. Isso permite que os elementos sejam adicionados e removidos de maneira eficiente em qualquer posição da lista, mas pode tornar a pesquisa de um elemento específico menos eficiente.
+
+O LinkedList é uma boa escolha quando a inserção e remoção de elementos em qualquer posição da lista é frequente e quando não é necessário acessar os elementos de forma aleatória.
+
+## **Vector**
+
+A classe Vector é semelhante ao ArrayList, mas é sincronizada, o que significa que é segura para uso em threads concorrentes. No entanto, a sincronização adiciona uma sobrecarga de desempenho, então o Vector pode ser mais lento que o ArrayList em algumas situações.
+
+## **Stack**
+
+A classe Stack implementa uma pilha, que é uma coleção ordenada de elementos onde a inserção e remoção de elementos ocorrem sempre no mesmo extremo da lista. Os elementos são adicionados e removidos em uma ordem conhecida como "last-in, first-out" (LIFO), ou seja, o último elemento adicionado é o primeiro a ser removido. A classe Stack é usada com frequência em algoritmos de processamento de texto, bem como em outras situações em que a LIFO é a maneira natural de organizar os dados.
+
+Cada uma dessas classes tem seus próprios pontos fortes e fracos, e a escolha de qual usar dependerá das necessidades específicas da aplicação. Para um melhor entendimento sobre estruturas de dados, recomendamos a leitura dos seguintes artigos:
+
+1. [Estruturas de dados: uma introdução](https://www.alura.com.br/artigos/estruturas-de-dados-introducao?_gl=1*sj4uqo*_ga*Mzc3NTIxMDAuMTcwNjcyNDQ1Mw..*_ga_1EPWSW3PCS*MTcxMTQwNDc1Mi44NS4xLjE3MTE0MDYyNTYuMC4wLjA.*_fplc*bFB4SEdjUnl0NlNLMUJ2TVp4aVFxb3FOVXRTNXRTek1xdG5JZnNsMFhrYWRmaUtGckg4TnM5MXRweHRjSDJWcXVRV1BLVnBrQXhXRGJwMkIxVzhKSDBHbjVURjFTbFNtSjdJJTJCcjVQN2x5NkxLcmhURFl5Y2I1U1hLUkpUZXclM0QlM0Q.)
+2. [Estrutura de Dados: computação na prática com Java](https://www.alura.com.br/artigos/estrutura-dados-computacao-na-pratica-com-java?_gl=1*sj4uqo*_ga*Mzc3NTIxMDAuMTcwNjcyNDQ1Mw..*_ga_1EPWSW3PCS*MTcxMTQwNDc1Mi44NS4xLjE3MTE0MDYyNTYuMC4wLjA.*_fplc*bFB4SEdjUnl0NlNLMUJ2TVp4aVFxb3FOVXRTNXRTek1xdG5JZnNsMFhrYWRmaUtGckg4TnM5MXRweHRjSDJWcXVRV1BLVnBrQXhXRGJwMkIxVzhKSDBHbjVURjFTbFNtSjdJJTJCcjVQN2x5NkxLcmhURFl5Y2I1U1hLUkpUZXclM0QlM0Q.)
+
+## **Map**
+
+O Map é uma **interface** que permite que os desenvolvedores associem chaves a valores. É uma estrutura de dados útil para muitas aplicações Java, especialmente aquelas que envolvem a manipulação de grandes quantidades de dados, portanto, é comum usá-lo para realizar buscas, atualização e recuperação de elementos por chaves
+
+Ele é implementado por diversas classes, sendo a mais comum delas o HashMap.
+
+## **HashMap**
+
+O HashMap é uma **classe** que implementa a interface Map usando uma tabela hash para armazenar os pares chave-valor. Ele é conhecido por sua eficiência em termos de tempo de execução. Essa classe tem uma complexidade de tempo O(1) - constante - para inserção, recuperação e remoção de elementos. Isso significa que o desempenho do HashMap não depende do tamanho da coleção de dados!
+
+No entanto, é importante lembrar que o HashMap não mantém a ordem de inserção dos elementos e não garante a ordem dos elementos na saída. Isso ocorre porque a ordem dos elementos depende da função de hash usada para mapear as chaves para índices na tabela hash. Além disso, o desempenho do HashMap pode ser afetado se houver muitas colisões de hash entre as chaves.
+
+Por exemplo:
+
+```csharp
+import java.util.HashMap;
+import java.util.Map;
+
+publicclassExemploHashMap {
+
+publicstaticvoidmain(String[] args) {
+        //Criando um objeto da classe HashMap que implementa a interface Map
+        Map<String, Integer> usandoHashMap =new HashMap<>();
+
+        // Adicionando pares chave-valor
+        usandoHashMap.put("Gatos", 1);
+        usandoHashMap.put("Cachorros", 2);
+        usandoHashMap.put("Roedores", 3);
+
+        // Acessando um valor através de uma chave
+        int valor = usandoHashMap.get("Cachorros");
+        System.out.println("Valor da chave Cachorros: " + valor);
+
+        // Removendo um par chave-valor
+        usandoHashMap.remove("Gatos");
+
+        // Iterando sobre as chaves
+for (String chave : usandoHashMap.keySet()) {
+            System.out.println("Chave: " + chave);
+            System.out.println("Valor: " + usandoHashMap.get(chave));
+        }
+    }
+}
+
+```
+
+O resultado será:
+
+```yaml
+Valor da chave Cachorros: 2
+Chave: Cachorros
+Valor: 2
+Chave: Roedores
+Valor: 3
+```
+
+---
+
+# API
+
+## API Key
+
+A **API Key**, ou chave de API, é um tipo de identificação que é utilizada para controlar o acesso aos serviços disponibilizados por uma API. Ela funciona como uma espécie de "chave" que os desenvolvedores precisam apresentar para acessar os recursos da API. Essa chave é única para cada desenvolvedor ou aplicativo e é utilizada para autenticar e autorizar as requisições feitas à API. Em resumo, a API Key é uma medida de segurança que permite que os provedores de API controlem quem pode acessar e utilizar os serviços oferecidos pela API.
+
+## **integração via APIs**
+
+A integração de sistemas é uma tarefa muito comum, pois permite que os diferentes serviços e aplicações de uma empresa funcionem em conjunto, reaproveitando soluções existentes. Uma das principais maneiras de realizar essa integração é por meio de APIs.
+
+API (Application Programming Interface) é um conjunto de padrões, protocolos e ferramentas para construir software e aplicativos. Uma API permite que diferentes sistemas e serviços se comuniquem e troquem informações de maneira padronizada. Existem diferentes tipos de APIs, sendo que o mais comum é API Web, que utiliza o protocolo HTTP para comunicação via internet.
+
+Um exemplo de uso de API é a integração de um sistema de vendas com um sistema de gestão financeira. Por meio de uma API, os dados de venda podem ser enviados automaticamente para o sistema financeiro, evitando a necessidade de inserção manual e reduzindo o risco de erros. Outro exemplo é o uso de uma API para integração de um aplicativo mobile com um serviço Web, para sincronização e armazenamento das informações dos usuários.
+
+## **JSON**
+
+O JSON (JavaScript Object Notation) é um formato de dados leve e popular para troca de informações entre sistemas, podendo ser utilizado em várias linguagens de programação.
+
+O JSON é composto por dois tipos de estruturas de dados: **objetos** e **arrays**. Um objeto é uma coleção de pares **chave-valor**, onde as chaves são strings e os valores podem ser strings, números, booleanos, objetos ou arrays. Por exemplo:
+
+```json
+{
+  "nome": "João",
+  "idade": 30,
+  "solteiro":false,
+  "endereco": {
+    "rua": "Rua 123",
+    "cidade": "São Paulo",
+    "estado": "SP"
+  },
+  "telefones": [
+    "1111-1111",
+    "2222-2222"
+  ]
+}
+```
+
+Já um array é uma coleção ordenada de valores, que podem ser strings, números, booleanos, objetos ou outros arrays. Por exemplo:
+
+```json
+[
+  {
+    "nome": "João",
+    "idade": 30
+  },
+  {
+    "nome": "Maria",
+    "idade": 25
+  },
+  {
+    "nome": "Pedro",
+    "idade": 40
+  }
+]
+```
+
+O JSON é amplamente utilizado em aplicações, independente da linguagem de programação utilizada, para enviar e receber dados de APIs, sendo que para isso é recomendado utilizar alguma biblioteca que permita a serialização (conversão de objetos em JSON) e a desserialização (conversão de JSON em objetos).
+
+## **Protocolo HTTP**
+
+O HTTP (Hypertext Transfer Protocol) é um protocolo de comunicação que permite a transferência de informações na internet. Ele é a base para a comunicação entre navegadores e servidores Web, sendo utilizado para a transmissão de conteúdo como textos, imagens e vídeos.
+
+O HTTP foi desenvolvido na década de 1990 e é baseado em um modelo cliente-servidor, onde um cliente (navegador Web) faz requisições a um servidor para obter informações, e o servidor responde com os dados solicitados. O HTTP utiliza o TCP (Transmission Control Protocol) como protocolo de transporte para garantir a entrega confiável dos dados.
+
+O HTTP utiliza métodos para especificar o tipo de operação que deve ser realizada no servidor. Os principais métodos são GET, POST, PUT e DELETE. O método GET é utilizado para solicitar dados do servidor, enquanto o POST é utilizado para enviar informações para o servidor. O PUT é utilizado para atualizar informações no servidor e o DELETE é utilizado para remover informações.
+
+Além dos métodos, o HTTP utiliza códigos de status para indicar o resultado da operação realizada. Os códigos de status variam de 100 a 599 e são divididos em cinco classes:
+
+- 1xx: Informações
+- 2xx: Sucesso
+- 3xx: Redirecionamento
+- 4xx: Erro do cliente
+- 5xx: Erro do servidor
+
+Caso você queira aprofundar os conhecimentos nesse protocolo, recomendamos o nosso curso [HTTP: Entendendo a web por baixo dos panos](https://cursos.alura.com.br/course/http-fundamentos).
+
+### **Padrões de projeto**
+
+Os padrões de projeto, também conhecidos como **design patterns**, são soluções reutilizáveis para problemas comuns de desenvolvimento de software. Eles surgiram na década de 1990, quando um grupo de desenvolvedores identificou que muitos projetos de software apresentavam problemas semelhantes, que podiam ser resolvidos por soluções também semelhantes.
+
+Os padrões de projeto podem ser divididos em três categorias:
+
+1. Padrões de criação: são padrões que lidam com a criação de objetos, visando garantir a flexibilidade e reutilização do código. Alguns exemplos de padrões de criação são: Factory Method, Builder e Singleton.
+2. Padrões de estrutura: são padrões que lidam com a organização de objetos em estruturas maiores, buscando simplificar a comunicação entre objetos e reduzir o acoplamento entre eles. Alguns exemplos de padrões de estrutura são: Adapter, Facade e Composite.
+3. Padrões de comportamento: são padrões que lidam com a comunicação entre objetos, buscando definir o comportamento esperado em situações específicas. Alguns exemplos de padrões de comportamento são: Observer, Command e Strategy.
+
+Ao utilizar padrões de projeto, é possível aumentar a qualidade do código, tornando-o mais legível, flexível e de fácil manutenção.
 
 ### Annotations(Anotação Java)
 
