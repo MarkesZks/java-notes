@@ -1059,6 +1059,151 @@ Os padrões de projeto podem ser divididos em três categorias:
 3. Padrões de comportamento: são padrões que lidam com a comunicação entre objetos, buscando definir o comportamento esperado em situações específicas. Alguns exemplos de padrões de comportamento são: Observer, Command e Strategy.
 
 Ao utilizar padrões de projeto, é possível aumentar a qualidade do código, tornando-o mais legível, flexível e de fácil manutenção.
+## **Transformando JSON em objeto**
+
+```java
+public class PrincipalComBusca {
+    public static void main(String[] args) throws IOException, InterruptedException {
+
+// código omitido…
+
+        String json = response.body();
+        System.out.println(json);
+
+        Gson gson = new Gson();
+        Titulo meuTitulo = gson.fromJson(json, Titulo.class);
+        System.out.println("Título: " + meuTitulo.getNome());
+    }
+}
+```
+
+A anotação `@SerializedName` é utilizada em classes Java para especificar o nome dos campos no JSON. Isso é útil quando os nomes dos campos no JSON não correspondem diretamente aos nomes dos atributos na classe Java.
+
+Por exemplo, se um objeto Java tem um atributo chamado "anoDeLancamento", mas no JSON esse campo é representado como "Year", podemos utilizar a anotação @SerializedName para fazer essa correspondência. Dessa forma, a biblioteca GSON consegue desserializar corretamente o JSON para o objeto Java, mesmo com nomes de campos diferentes.
+
+Aqui está um exemplo de como a anotação `@SerializedName` é utilizada:
+
+```java
+import com.google.gson.annotations.SerializedName;
+
+public class Titulo {
+    @SerializedName("Title")
+    private String nome;
+    @SerializedName("Year")
+    private int anoDeLancamento;
+    // outros atributos e métodos...
+}
+```
+
+Neste exemplo, a anotação @SerializedName é utilizada para mapear os campos "Title" e "Year" do JSON para os atributos "nome" e "anoDeLancamento" da classe "Titulo". Isso permite que a desserialização do JSON para o objeto Java seja feita corretamente, levando em consideração os nomes diferentes dos campos.
+
+## **Record**
+
+Lançado oficialmente no Java 16, mas disponível desde o Java 14 de maneira experimental, o **Record** é um recurso que permite representar uma classe imutável, contendo apenas atributos, construtor e métodos de leitura, de uma maneira muito simples e enxuta.
+
+Esse recurso se encaixa perfeitamente quando precisamos criar um objeto apenas para representar **dados**, sem nenhum tipo de comportamento.
+
+Para se criar uma classe imutável, sem a utilização do Record, era necessário escrever muito código. Vejamos um exemplo de uma classe que representa um telefone:
+
+```java
+publicfinalclassTelefone {
+
+privatefinal String ddd;
+privatefinal String numero;
+
+publicTelefone(String ddd, String numero) {
+        this.ddd = ddd;
+        this.numero = numero;
+    }
+
+    @Override
+publicinthashCode() {
+return Objects.hash(ddd, numero);
+    }
+
+    @Override
+publicbooleanequals(Object obj) {
+if (this == obj) {
+returntrue;
+        }elseif (!(objinstanceof Telefone)) {
+returnfalse;
+        }else {
+Telefone other = (Telefone) obj;
+return Objects.equals(ddd, other.ddd)
+              && Objects.equals(numero, other.numero);
+        }
+    }
+
+public StringgetDdd() {
+return this.ddd;
+    }
+
+public StringgetNumero() {
+return this.numero;
+    }
+}
+```
+
+Agora com o Record, todo esse código pode ser resumido com uma única linha:
+
+```java
+publicrecordTelefone(String ddd, String numero){}
+```
+
+Muito mais simples, não?!
+
+Por baixo dos panos, o Java vai transformar esse Record em uma classe imutável, muito similar ao código exibido anteriormente.
+
+## **Imutabilidade**
+
+A imutabilidade, citada anteriormente ao falarmos sobre record, é um conceito importante em Java, que se refere à capacidade de um objeto não poder ser alterado depois de criado. Existem algumas classes que são imutáveis por padrão, como por exemplo, as classes String, Integer, Boolean, entre outras. Isso significa que, uma vez criado um objeto dessas classes, não é possível modificar o seu estado.
+
+Vamos exemplificar. Dado o record abaixo:
+
+```java
+publicrecordEstudante(String nome, int idade) {}
+
+```
+
+Uma vez criado um objeto Estudante, seus valores não podem ser modificados:
+
+```java
+Estudante estudante1 =newEstudante(“Alice”, 19);
+```
+
+Observe que após essa criação, eu não consigo setar outro nome ou idade para o objeto estudante1.
+
+```java
+estudante1.setNome(“Maria”); //Essa possibilidade não existe
+estudante1.nome = “Maria”; //Essa possibilidade não existe
+
+```
+
+Qualquer uma das tentativas acima, vai apresentar erro de compilação, pois não é possível atribuir nenhum outro nome a variável estudante1.
+
+Com relação ao record, fica bem claro, certo? Mas e a String, por exemplo? Eu consigo fazer os passos abaixo no código:
+
+```java
+String nome = “Maria”;
+nome = “Alice”;
+
+```
+
+Se a String é imutável, o certo era eu não conseguir atribuir o conteúdo “Alice” à variável nome, correto?
+
+No caso da String e de outras classes imutáveis que citei acima, a variável `nome` contém uma referência ao objeto da classe String que contém o valor "Maria".
+
+No entanto, quando você tenta alterar o valor da string, o que realmente acontece é que um novo objeto da classe String é criado com o novo valor e a variável é atualizada para armazenar uma referência ao novo objeto.
+
+Por isso, podemos dizer que a classe String é imutável, porque uma vez que um objeto da classe String é criado, ele não pode ser alterado. No entanto, as variáveis que armazenam referências a objetos da classe String podem ser atualizadas para referenciar novos objetos, que são criados a partir do conteúdo do objeto original.
+
+A imutabilidade é importante por várias razões, entre elas:
+
+- `Concorrência`: objetos imutáveis são seguros para uso em ambientes concorrentes, já que não há necessidade de sincronização.
+- `Segurança`: objetos imutáveis são seguros contra alterações acidentais ou mal-intencionadas.
+- `Desempenho`: objetos imutáveis podem ser armazenados em cache e reutilizados, o que pode melhorar o desempenho.
+
+---
 
 ### Annotations(Anotação Java)
 
@@ -1068,3 +1213,4 @@ No Java, as anotações são definidas com o uso do símbolo "@" seguido do nome
 
 - `@Override` → é utilizada em Java para indicar que um método está sendo sobrescrito na classe filha. Embora seja opcional, é uma boa prática utilizá-la, pois ela ajuda a evitar erros de digitação e a IDE pode exibir alertas caso haja algum problema na sobrescrita do método.
 - `@Deprecated` → é usada para indicar que um método ou classe está obsoleto e não deve ser mais utilizado
+- `@SerializedName` → é utilizada em classes Java para especificar o nome dos campos no JSON.

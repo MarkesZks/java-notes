@@ -1,4 +1,3 @@
-# Java Rota de Estudos
 ## Nivel 1
 
 - [x]  **Java - Fundamentos**:
@@ -14,7 +13,7 @@
     - [x]  Usar funções, passando parâmetros e argumentos
     - [ ]  Obter dados de uma API
     
-- [ ]  **Conceitos de Orientação a Objetos**:
+- [x]  **Conceitos de Orientação a Objetos**:
     - A Programação Orientada a Objetos é um paradigma de programação de software baseado na composição e interação entre diversas unidades chamadas de 'objetos' e as classes, que contêm uma identidade, propriedades e métodos). Ela é baseada em quatro componentes da programação: abstração digital, encapsulamento, herança e polimorfismo.
     - [x]  Como funcionam objetos
     - [x]  Manipular métodos
@@ -22,24 +21,24 @@
     - [x]  Criar construtores
     - [x]  O que são classes
     - [x]  Criar e utilizar métodos
-    - [ ]  Como funciona encapsulamento
-    - [ ]  O que é herança
-    - [ ]  O que é polimorfismo
-    - [ ]  Como funcionam interfaces
-    - [ ]  O que são abstrações
+    - [x]  Como funciona encapsulamento
+    - [x]  O que é herança
+    - [x]  O que é polimorfismo
+    - [x]  Como funcionam interfaces
+    - [x]  O que são abstrações
 - [ ]  **Java - Manipulação de Erros**:
     - O tratamento de erros refere-se aos procedimentos de resposta e recuperação de condições de erro presentes em um aplicativo de software. Em outras palavras, é o processo composto de antecipação, detecção e resolução de erros de aplicação, de programação ou de comunicação.
     - [ ]  Tratar exceções pré-definidas
     - [ ]  Uso de 'try' e 'catch'
     - [ ]  Criar exceções específicas
     - [ ]  Fazer o processo de Debug
-- [ ]  **Java - Coleções**:
+- [x]  **Java - Coleções**:
     - Uma coleção representa um grupo de objetos, conhecidos como seus elementos. Eles são como recipientes que agrupam vários itens em uma única unidade. Algumas coleções permitem a duplicação de elementos e outras não. Algumas são ordenadas e outras não ordenadas.
     
-    - [ ]  Aprender os usos e diferenças entre List, Set e Map
-    - [ ]  Aprender os usos e diferenças entre Equals e HashCode
-    - [ ]  Saiba trabalhar com ArrayList, LinkedList ou Vector
-    - [ ]  Classes Wrappers
+    - [x]  Aprender os usos e diferenças entre List, Set e Map
+    - [x]  Aprender os usos e diferenças entre Equals e HashCode
+    - [x]  Saiba trabalhar com ArrayList, LinkedList ou Vector
+    - [x]  Classes Wrappers
 - [ ]  **Java - Testes**:
     - O teste de software é o processo de avaliação e verificação de que um software realmente faz o que deveria fazer. Os benefícios dos testes incluem a prevenção de bugs, a redução dos custos de desenvolvimento e a melhoria do desempenho.
     - [ ]  Usar testes unitários
@@ -48,9 +47,9 @@
     - [ ]  Usar mocks
 - [ ]  **Java - Pacotes**:
     - Um pacote (package) em Java é usado para agrupar classes relacionadas, de forma semelhante a uma pasta em um diretório de arquivos. Os pacotes são usados para evitar conflitos de nomes e para escrever um código de melhor manutenção.
-    - [ ]  Use imports e organize o seu código através de packages
-    - [ ]  Conhecer a java.lang
-    - [ ]  Entender a imutabilidade e a classe String
+    - [x]  Use imports e organize o seu código através de packages
+    - [x]  Conhecer a java.lang
+    - [x]  Entender a imutabilidade e a classe String
     - [ ]  Entender a classe java.lang.Object
     - [ ]  Conhecer a java.io
 - [ ]  **Estruturas de Dados**:
@@ -60,7 +59,7 @@
 
 ## Nivel 2
 
-- [ ]  **JVM**:
+- [x]  **JVM**:
     - Máquina virtual Java (em inglês, Java Virtual Machine, JVM) é um programa que carrega e executa os aplicativos Java, convertendo os bytecodes em código executável de máquina. A JVM é responsável pelo gerenciamento dos aplicativos, à medida que são executados. Graças à máquina virtual Java, os programas escritos em Java podem funcionar em qualquer plataforma de hardware e software que possua uma versão da JVM, tornando assim essas aplicações independentes da plataforma onde funcionam.
     - Entender como funciona a máquina virtual do Java
 - [ ]  **Java - Gerenciamento da Memória**:
